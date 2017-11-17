@@ -15,6 +15,9 @@ class App extends React.Component {
       input: ''
     }
     // manualling bind your functions here
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
 
@@ -45,15 +48,15 @@ class App extends React.Component {
 
     let tasks = this.state.tasks.map((task)=>
       // Change this passed in function
-      <Todo task={task} del={ (e)=>this.handleDelete(e)}/>
+      <Todo task={task} del={ this.handleDelete }/>
     )
 
     return (
       <div>
       {/*Change this passed in function */}
-        <form onSubmit={ (event)=>this.handleSubmit(event) }>
+        <form onSubmit={ this.handleSubmit }>
 
-          <input onChange={ (event)=>this.handleChange(event) } />
+          <input onChange={ this.handleChange } />
           <input type="submit"/>
         </form>
 
