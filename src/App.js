@@ -6,7 +6,6 @@ import Todo from './Todo';
 
 class App extends React.Component {
 
-
   constructor(){
     super();
 
@@ -15,9 +14,10 @@ class App extends React.Component {
       input: ''
     }
     // manualling bind your functions here
-    this.handleDelete = this.handleDelete.bind(this);
+    // this.handleDelete = this.handleDelete.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
 
 
@@ -44,11 +44,20 @@ class App extends React.Component {
     })
   }
 
+  handleUpdate(update){
+    this.setState({
+    tasks: this.state.tasks.map(task => task === update[0] ?
+         update[1]  :
+         task
+        )
+     })
+   }
+
   render() {
 
     let tasks = this.state.tasks.map((task)=>
       // Change this passed in function
-      <Todo task={task} del={ this.handleDelete }/>
+      <Todo task={task} del={ this.handleDelete.bind(this) }/>
     )
 
     return (

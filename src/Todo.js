@@ -48,6 +48,7 @@ componentWillReceiveProps(nextProps){
 
 
 render(){
+  // debugger
   return(
     <div>
       <li>{this.props.task}
@@ -60,23 +61,24 @@ render(){
           <button onClick={ ()=> this.setState({ complete: true })}> Complete</button>
         }
 
-        {this.state.updatedField ?
-          <button onClick={ this.handleUpdate }> Update Complete</button>:
-          <button onClick={ ()=> this.setState({ updatedField: true })}>Update</button>
-        }
+        {this.state.showUpdateField ?
+         <button onClick={this.handleProp}>Done updating</button> :
+         <button onClick={ ()=> this.setState({ updatedField: true }) }>
+         Update</button>
+       }
       </li>
 
 
       {this.state.updatedField ?
-        <form onSubmit= { this.handleProp }>
-        <input placeholder={ this.props.task } onChange={ this.handleUpdate }/>
-        </form>
-        :
-        ""
-      }
+         <form onSubmit={ this.handleUpdate }>
+         <input placeholder={this.props.task} onChange={ this.handleUpdate }/>
+         </form>
+         :
+         ""
+       }
+     {this.state.complete ? "mission complete" : "Mission NOT Complete"}
+   </div>
 
-      {this.state.complete ? "mission complete" : "Mission NOT Complete"}
-    </div>
     )
   }
 }
